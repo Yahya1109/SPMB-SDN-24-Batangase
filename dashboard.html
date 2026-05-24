@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasbor Admin | UPTD SDN 24 Batangase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style type="text/tailwindcss">
+        /* Styling khusus Dashboard */
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Navbar Minimalis untuk Admin -->
+    <nav class="fixed w-full z-50 glass shadow-sm transition-all duration-300 no-print" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <a href="dashboard.html" class="flex items-center overflow-hidden">
+                    <img src="logo.png.png" alt="Logo SDN 24 Batangase" class="w-10 h-10 sm:w-12 sm:h-12 mr-3 object-contain drop-shadow-md shrink-0">
+                    <div class="truncate">
+                        <h1 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white leading-tight truncate">Dasbor Admin</h1>
+                        <p class="text-[10px] sm:text-xs text-primary-600 dark:text-primary-400 font-medium truncate">PPDB SDN 24 Batangase</p>
+                    </div>
+                </a>
+
+                <div class="flex items-center space-x-4 shrink-0">
+                    <button id="themeToggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fa-solid fa-moon dark:hidden"></i><i class="fa-solid fa-sun hidden dark:block"></i>
+                    </button>
+                    <!-- Tampil di layar besar, di hp disembunyikan dan dipindah ke bawah -->
+                    <button onclick="app.logout()" class="hidden sm:flex bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-4 py-2 rounded-xl text-sm font-bold hover:bg-red-100 transition-colors items-center">
+                        <i class="fa-solid fa-power-off mr-2"></i> Keluar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-20 sm:pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full animate-fade-in">
+        <section class="mt-2 sm:mt-0">
+            <div class="flex flex-col lg:flex-row gap-6 h-full min-h-[80vh]">
+                
+                <!-- Sidebar -->
+                <aside class="w-full lg:w-64 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 hidden lg:block no-print shrink-0">
+                    <div class="flex flex-col h-full">
+                        <div class="space-y-2 flex-grow">
+                            <a href="dashboard.html" class="flex items-center px-4 py-3 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-xl font-medium"><i class="fa-solid fa-chart-pie w-6"></i> Dashboard</a>
+                            <a href="#" onclick="alert('Fitur Data Sekolah Segera Hadir')" class="flex items-center px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl font-medium transition-colors"><i class="fa-solid fa-school w-6"></i> Data Sekolah</a>
+                            <a href="#" onclick="alert('Fitur Pengaturan Segera Hadir')" class="flex items-center px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl font-medium transition-colors"><i class="fa-solid fa-gear w-6"></i> Pengaturan</a>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Dashboard Content -->
+                <div class="flex-grow flex flex-col space-y-4 sm:space-y-6 overflow-hidden">
+                    
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white dark:bg-slate-800 p-5 sm:p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 no-print gap-4 sm:gap-0">
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Rekapitulasi PPDB</h2>
+                            <p class="text-xs sm:text-sm text-gray-500">Pembaruan data Realtime aktif.</p>
+                        </div>
+                        <div class="flex gap-2 w-full sm:w-auto">
+                            <button onclick="app.logout()" class="lg:hidden sm:hidden flex-1 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-red-100 transition-colors">
+                                <i class="fa-solid fa-power-off mr-1"></i> Keluar
+                            </button>
+                            <button onclick="window.print()" class="flex-1 sm:flex-none bg-gray-900 dark:bg-gray-700 text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-gray-800 transition-colors">
+                                <i class="fa-solid fa-print mr-1"></i> Cetak Laporan
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 no-print">
+                        <div class="bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                            <p class="text-xs sm:text-sm text-gray-500 mb-1 line-clamp-1">Total Pendaftar</p>
+                            <div class="flex justify-between items-end">
+                                <h3 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white" id="statTotal">0</h3>
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center shrink-0"><i class="fa-solid fa-users text-sm sm:text-base"></i></div>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                            <p class="text-xs sm:text-sm text-gray-500 mb-1 line-clamp-1">Menunggu</p>
+                            <div class="flex justify-between items-end">
+                                <h3 class="text-2xl sm:text-3xl font-bold text-yellow-600" id="statMenunggu">0</h3>
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center shrink-0"><i class="fa-solid fa-clock text-sm sm:text-base"></i></div>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                            <p class="text-xs sm:text-sm text-gray-500 mb-1 line-clamp-1">Diterima</p>
+                            <div class="flex justify-between items-end">
+                                <h3 class="text-2xl sm:text-3xl font-bold text-green-500" id="statDiterima">0</h3>
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 text-green-500 rounded-full flex items-center justify-center shrink-0"><i class="fa-solid fa-check-double text-sm sm:text-base"></i></div>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                            <p class="text-xs sm:text-sm text-gray-500 mb-1 line-clamp-1">Laki / Pr</p>
+                            <div class="flex justify-between items-end">
+                                <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mt-1 sm:mt-2"><span id="statL">0</span> <span class="text-gray-400 font-normal text-xs sm:text-sm mx-0.5">/</span> <span id="statP">0</span></h3>
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-purple-100 text-purple-500 rounded-full flex items-center justify-center shrink-0"><i class="fa-solid fa-venus-mars text-sm sm:text-base"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Table Section -->
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 flex-grow flex flex-col overflow-hidden" id="printArea">
+                        <div class="p-4 sm:p-5 border-b border-gray-100 dark:border-gray-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 no-print">
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-white shrink-0">Data Pendaftar Terbaru</h3>
+                            
+                            <div class="flex flex-col sm:flex-row w-full md:w-auto gap-2">
+                                <div class="relative w-full md:w-64">
+                                    <i class="fa-solid fa-search absolute left-3 top-3 text-gray-400"></i>
+                                    <input type="text" id="searchTable" onkeyup="app.filterTable()" placeholder="Cari nama atau No. Daftar..." class="w-full pl-9 pr-3 py-2.5 bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-gray-600 rounded-xl text-sm focus:ring-1 focus:ring-primary-500 outline-none">
+                                </div>
+                                <select id="filterStatus" onchange="app.filterTable()" class="w-full sm:w-auto bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-gray-600 rounded-xl text-sm px-3 py-2.5 outline-none">
+                                    <option value="all">Semua Status</option>
+                                    <option value="Menunggu Verifikasi">Menunggu</option>
+                                    <option value="Diverifikasi">Diverifikasi</option>
+                                    <option value="Ditolak">Ditolak</option>
+                                    <option value="Cadangan">Cadangan</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Table Wrapper with Horizontal Scroll -->
+                        <div class="overflow-x-auto w-full">
+                            <table class="w-full text-left border-collapse min-w-[800px]">
+                                <thead>
+                                    <tr class="bg-gray-50 dark:bg-slate-900/50 text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider">
+                                        <th class="p-4 font-medium whitespace-nowrap">No. Pendaftaran</th>
+                                        <th class="p-4 font-medium whitespace-nowrap">Nama Siswa</th>
+                                        <th class="p-4 font-medium whitespace-nowrap">L/P</th>
+                                        <th class="p-4 font-medium whitespace-nowrap">Tanggal Daftar</th>
+                                        <th class="p-4 font-medium whitespace-nowrap">Status</th>
+                                        <th class="p-4 font-medium text-center no-print whitespace-nowrap">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody" class="divide-y divide-gray-100 dark:divide-gray-700 text-sm">
+                                    <tr><td colspan="6" class="p-8 text-center text-gray-500"><div class="loader !border-primary-500 !border-t-transparent"></div> Memuat data...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Detail Siswa -->
+    <div id="modalDetail" class="fixed inset-0 z- hidden items-center justify-center bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300 p-3 sm:p-4 no-print">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[95vh] overflow-hidden flex flex-col transform scale-95 transition-transform duration-300" id="modalContent">
+            
+            <div class="p-4 sm:p-5 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50 dark:bg-slate-900 shrink-0">
+                <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white truncate pr-4" id="m_title">Detail Pendaftar</h3>
+                <button onclick="app.closeModal()" class="text-gray-400 hover:text-red-500 transition-colors shrink-0 bg-gray-200 dark:bg-gray-700 rounded-full w-8 h-8 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="p-4 sm:p-6 overflow-y-auto flex-grow text-sm text-gray-700 dark:text-gray-300" id="m_body">
+                <!-- Data akan dimasukkan oleh app.js -->
+            </div>
+            
+            <div class="p-4 sm:p-5 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-slate-900 flex justify-end shrink-0">
+                <button onclick="app.closeModal()" class="px-6 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium w-full sm:w-auto">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="fixed bottom-5 right-5 left-5 sm:left-auto z- flex flex-col space-y-2 pointer-events-none no-print"></div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran PPDB | UPTD SDN 24 Batangase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style type="text/tailwindcss">
+        .form-group { @apply mb-5 md:mb-6; }
+        .form-label { @apply flex items-start sm:items-center text-sm font-bold text-slate-700 dark:text-slate-200 mb-2 tracking-wide leading-relaxed; }
+        .form-label i { @apply text-primary-500 dark:text-primary-400 mr-2.5 text-base shrink-0 mt-0.5 sm:mt-0; }
+        .form-input { @apply w-full px-4 py-3 sm:py-3.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white transition-all duration-300 shadow-sm placeholder:text-slate-400; }
+        .form-input:focus { @apply outline-none border-primary-500 ring-4 ring-primary-500/20 bg-white dark:bg-slate-900 shadow-md transform -translate-y-0.5; }
+        .form-input:hover:not(:focus) { @apply border-primary-400 dark:border-slate-500 shadow; }
+        .form-input:disabled { @apply bg-slate-100 dark:bg-slate-800 cursor-not-allowed border-slate-200 dark:border-slate-700 shadow-none transform-none; }
+        input[type="file"] { @apply file:mr-4 file:py-2 file:px-4 sm:file:py-2.5 sm:file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100 dark:file:bg-primary-900/30 dark:file:text-primary-400 dark:hover:file:bg-primary-900/50 cursor-pointer p-1.5 w-full text-xs sm:text-sm; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <a href="index.html" class="flex items-center overflow-hidden">
+                    <img src="logo.png.png" alt="Logo SDN 24 Batangase" class="w-10 h-10 sm:w-12 sm:h-12 mr-3 object-contain drop-shadow-md shrink-0">
+                    <div class="truncate">
+                        <h1 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white leading-tight truncate">SDN 24 Batangase</h1>
+                        <p class="text-[10px] sm:text-xs text-primary-600 dark:text-primary-400 font-medium truncate">PPDB Online 2026</p>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-6 shrink-0">
+                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors">Beranda</a>
+                    <a href="form.html" class="text-primary-600 dark:text-primary-400 font-medium transition-colors">Daftar Sekarang</a>
+                    <div class="h-6 w-px bg-gray-300 dark:bg-gray-700"></div>
+                    <button id="themeToggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fa-solid fa-moon dark:hidden"></i><i class="fa-solid fa-sun hidden dark:block"></i>
+                    </button>
+                    <a href="login.html" class="bg-white dark:bg-slate-800 border-2 border-primary-100 dark:border-slate-700 text-primary-700 dark:text-primary-400 px-5 py-2 rounded-full font-medium hover:bg-primary-50 dark:hover:bg-slate-700 transition-all shadow-sm flex items-center">
+                        <i class="fa-solid fa-user-shield mr-2"></i> Admin
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center space-x-3 shrink-0">
+                    <button id="themeToggleMobile" class="w-9 h-9 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300">
+                        <i class="fa-solid fa-moon dark:hidden text-sm"></i><i class="fa-solid fa-sun hidden dark:block text-sm"></i>
+                    </button>
+                    <button id="mobileMenuBtn" class="text-gray-600 dark:text-gray-300 text-2xl p-1"><i class="fa-solid fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-slate-800 border-t border-gray-100 dark:border-gray-700 shadow-lg absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="index.html" class="block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">Beranda</a>
+                <a href="form.html" class="block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-slate-700 transition-colors">Daftar Sekarang</a>
+                <a href="login.html" class="block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-gray-700 transition-colors"><i class="fa-solid fa-user-shield mr-2"></i> Login Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-20 sm:pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full animate-fade-in">
+        
+        <!-- Wadah Formulir -->
+        <div id="form-container" class="max-w-5xl mx-auto mt-4 sm:mt-0">
+            <div class="text-center mb-8 sm:mb-10 px-2">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">Formulir Pendaftaran</h2>
+                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Isi data dengan lengkap dan benar sesuai dokumen asli.</p>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden relative">
+                <div class="bg-primary-50 dark:bg-slate-900/50 p-4 sm:p-5 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center text-xs sm:text-sm font-medium">
+                    <span class="text-primary-600 dark:text-primary-400 flex items-center"><i class="fa-solid fa-circle-info mr-2"></i> Wajib diisi (*)</span>
+                    <span class="text-gray-500 px-3 py-1 bg-white dark:bg-slate-800 rounded-full shadow-sm border border-slate-200 dark:border-slate-700">Tahun 2026</span>
+                </div>
+
+                <form id="formPendaftaran" class="p-5 sm:p-8 md:p-10" onsubmit="app.submitPPDB(event)">
+                    
+                    <!-- DATA SISWA -->
+                    <div class="mb-10 sm:mb-14">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-5 sm:mb-6 pb-2 border-b-2 border-primary-100 dark:border-gray-700 flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-600 flex items-center justify-center mr-3 text-sm shadow-sm shrink-0">1</div> Data Calon Siswa
+                        </h3>
+                        <div class="bg-slate-50 dark:bg-slate-800/30 p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-700 shadow-inner grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-id-card"></i> NIK *</label><input type="text" id="f_nik" class="form-input" pattern="[0-9]{16}" maxlength="16" required placeholder="16 Digit Angka NIK" oninput="this.value = this.value.replace(/[^0-9]/g, '')"></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-id-badge"></i> NISN (Opsional)</label><input type="text" id="f_nisn" class="form-input" maxlength="10" placeholder="Opsional"></div>
+                            <div class="form-group md:col-span-2"><label class="form-label"><i class="fa-solid fa-user"></i> Nama Lengkap *</label><input type="text" id="f_nama" class="form-input uppercase" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-map-marker-alt"></i> Tempat Lahir *</label><input type="text" id="f_tempatLahir" class="form-input uppercase" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-calendar-day"></i> Tanggal Lahir *</label><input type="date" id="f_tglLahir" class="form-input" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-venus-mars"></i> Jenis Kelamin *</label><select id="f_jk" class="form-input" required><option value="" disabled selected>Pilih...</option><option value="Laki-laki">Laki-laki</option><option value="Perempuan">Perempuan</option></select></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-hands-praying"></i> Agama *</label><select id="f_agama" class="form-input" required><option value="" disabled selected>Pilih...</option><option value="Islam">Islam</option><option value="Kristen">Kristen</option><option value="Katolik">Katolik</option><option value="Hindu">Hindu</option><option value="Buddha">Buddha</option><option value="Konghucu">Konghucu</option></select></div>
+                            <div class="form-group md:col-span-2"><label class="form-label"><i class="fa-solid fa-house"></i> Alamat Lengkap *</label><textarea id="f_alamat" class="form-input uppercase" rows="2" required></textarea></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-map-signs"></i> RT / RW *</label><div class="flex space-x-3"><input type="text" id="f_rt" class="form-input w-1/2" placeholder="RT (01)" required><input type="text" id="f_rw" class="form-input w-1/2" placeholder="RW (02)" required></div></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-city"></i> Kelurahan / Desa *</label><input type="text" id="f_kelurahan" class="form-input uppercase" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-building"></i> Kecamatan *</label><input type="text" id="f_kecamatan" class="form-input uppercase" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-map"></i> Kabupaten / Kota *</label><input type="text" id="f_kabupaten" class="form-input uppercase" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-envelopes-bulk"></i> Kode Pos *</label><input type="number" id="f_kodepos" class="form-input" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-school"></i> Asal Sekolah</label><input type="text" id="f_asalSekolah" class="form-input uppercase" placeholder="Opsional"></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-file-signature"></i> No. Akta Kelahiran *</label><input type="text" id="f_noAkta" class="form-input uppercase" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-credit-card"></i> No. KIP/KKS</label><input type="text" id="f_kip" class="form-input uppercase" placeholder="Opsional"></div>
+                        </div>
+                    </div>
+
+                    <!-- DATA ORANG TUA -->
+                    <div class="mb-10 sm:mb-14">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-5 sm:mb-6 pb-2 border-b-2 border-primary-100 dark:border-gray-700 flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-600 flex items-center justify-center mr-3 text-sm shadow-sm shrink-0">2</div> Data Orang Tua
+                        </h3>
+                        <!-- AYAH -->
+                        <div class="bg-blue-50/70 dark:bg-slate-800/50 p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl border border-blue-200 dark:border-slate-700 shadow-inner grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1 mb-6">
+                            <div class="md:col-span-2 mb-3"><h4 class="font-bold text-base sm:text-lg text-primary-700 dark:text-primary-400 border-b border-blue-200/50 dark:border-slate-600 pb-3 flex items-center"><i class="fa-solid fa-user-tie text-xl mr-3"></i>Data Ayah Kandung</h4></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-user"></i> Nama Ayah *</label><input type="text" id="f_namaAyah" class="form-input uppercase" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-calendar"></i> Tahun Lahir</label><input type="number" id="f_tahunAyah" class="form-input"></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-graduation-cap"></i> Pendidikan</label><select id="f_pendidikanAyah" class="form-input"><option value="">Pilih...</option><option>SD</option><option>SMP</option><option>SMA/SMK</option><option>D3/S1</option><option>S2/S3</option><option>Tidak Sekolah</option></select></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-briefcase"></i> Pekerjaan</label><input type="text" id="f_pekerjaanAyah" class="form-input uppercase"></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-sack-dollar"></i> Penghasilan / Bulan</label><select id="f_penghasilanAyah" class="form-input"><option value="">Pilih...</option><option>< Rp 1.000.000</option><option>Rp 1.000.000 - Rp 3.000.000</option><option>Rp 3.000.000 - Rp 5.000.000</option><option>> Rp 5.000.000</option></select></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-mobile-screen"></i> No. HP / WhatsApp *</label><input type="tel" id="f_hpAyah" class="form-input" required></div>
+                        </div>
+                        <!-- IBU -->
+                        <div class="bg-pink-50/70 dark:bg-slate-800/50 p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl border border-pink-200 dark:border-slate-700 shadow-inner grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                            <div class="md:col-span-2 mb-3"><h4 class="font-bold text-base sm:text-lg text-pink-600 dark:text-pink-400 border-b border-pink-200/50 dark:border-slate-600 pb-3 flex items-center"><i class="fa-solid fa-person-dress text-xl mr-3"></i>Data Ibu Kandung</h4></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-user"></i> Nama Ibu *</label><input type="text" id="f_namaIbu" class="form-input uppercase" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-calendar"></i> Tahun Lahir</label><input type="number" id="f_tahunIbu" class="form-input"></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-graduation-cap"></i> Pendidikan</label><select id="f_pendidikanIbu" class="form-input"><option value="">Pilih...</option><option>SD</option><option>SMP</option><option>SMA/SMK</option><option>D3/S1</option><option>S2/S3</option><option>Tidak Sekolah</option></select></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-briefcase"></i> Pekerjaan</label><input type="text" id="f_pekerjaanIbu" class="form-input uppercase"></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-sack-dollar"></i> Penghasilan / Bulan</label><select id="f_penghasilanIbu" class="form-input"><option value="">Pilih...</option><option>Tidak Berpenghasilan</option><option>< Rp 1.000.000</option><option>Rp 1.000.000 - Rp 3.000.000</option><option>> Rp 3.000.000</option></select></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-mobile-screen"></i> No. HP / WhatsApp</label><input type="tel" id="f_hpIbu" class="form-input"></div>
+                        </div>
+                        <!-- WALI -->
+                        <div class="mt-8">
+                            <h4 class="font-semibold text-sm sm:text-base text-slate-700 dark:text-slate-300 mb-4 cursor-pointer flex items-center justify-between bg-slate-100 dark:bg-slate-800 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700" onclick="document.getElementById('waliSection').classList.toggle('hidden')">
+                                <span class="flex items-center"><i class="fa-solid fa-user-shield text-primary-500 mr-3 text-lg shrink-0"></i> Isi Data Wali (Opsional / Jika dengan Wali)</span><i class="fa-solid fa-chevron-down text-slate-400"></i>
+                            </h4>
+                            <div id="waliSection" class="hidden grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1 bg-slate-50 dark:bg-slate-800/30 p-5 md:p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-inner">
+                                <div class="form-group"><label class="form-label"><i class="fa-solid fa-user"></i> Nama Wali</label><input type="text" id="f_namaWali" class="form-input uppercase"></div>
+                                <div class="form-group"><label class="form-label"><i class="fa-solid fa-briefcase"></i> Pekerjaan Wali</label><input type="text" id="f_pekerjaanWali" class="form-input uppercase"></div>
+                                <div class="form-group"><label class="form-label"><i class="fa-solid fa-mobile-screen"></i> Kontak Wali</label><input type="tel" id="f_hpWali" class="form-input"></div>
+                                <div class="form-group"><label class="form-label"><i class="fa-solid fa-house"></i> Alamat Wali</label><input type="text" id="f_alamatWali" class="form-input uppercase"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DATA PERIODIK -->
+                    <div class="mb-10 sm:mb-14">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-5 sm:mb-6 pb-2 border-b-2 border-primary-100 dark:border-gray-700 flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-600 flex items-center justify-center mr-3 text-sm shadow-sm shrink-0">3</div> Data Periodik
+                        </h3>
+                        <div class="bg-slate-50 dark:bg-slate-800/30 p-5 md:p-8 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-700 shadow-inner grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-1">
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-ruler-vertical"></i> Tinggi Badan (cm) *</label><input type="number" id="f_tinggi" class="form-input" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-weight-scale"></i> Berat Badan (kg) *</label><input type="number" id="f_berat" class="form-input" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-child"></i> Anak Ke- *</label><input type="number" id="f_anakKe" class="form-input" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-users"></i> Jumlah Saudara *</label><input type="number" id="f_jmlSaudara" class="form-input" required></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-route"></i> Jarak Rumah *</label><select id="f_jarak" class="form-input" required><option value="">Pilih...</option><option>< 1 KM</option><option>1 - 3 KM</option><option>3 - 5 KM</option><option>> 5 KM</option></select></div>
+                            <div class="form-group"><label class="form-label"><i class="fa-solid fa-stopwatch"></i> Waktu Tempuh (Menit) *</label><input type="number" id="f_waktu" class="form-input" required></div>
+                            <div class="form-group md:col-span-3"><label class="form-label"><i class="fa-solid fa-bus"></i> Transportasi ke Sekolah *</label><select id="f_transport" class="form-input" required><option value="">Pilih...</option><option>Jalan Kaki</option><option>Kendaraan Pribadi</option><option>Kendaraan Umum/Angkot</option><option>Jemputan Sekolah</option></select></div>
+                        </div>
+                    </div>
+
+                    <!-- UPLOAD BERKAS -->
+                    <div class="mb-8">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-5 sm:mb-6 pb-2 border-b-2 border-primary-100 dark:border-gray-700 flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-600 flex items-center justify-center mr-3 text-sm shadow-sm shrink-0">4</div> Upload Berkas
+                        </h3>
+                        <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 mb-6 rounded-r-xl shadow-sm flex items-start">
+                            <i class="fa-solid fa-circle-info text-amber-500 text-lg sm:text-xl mr-3 mt-0.5 shrink-0"></i>
+                            <p class="text-xs sm:text-sm font-medium text-amber-800 dark:text-amber-200 leading-relaxed">Format file yang didukung: JPG, PNG, PDF. Ukuran maksimal 2MB per file.</p>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/30 p-5 md:p-8 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-700 shadow-inner grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                            <div class="form-group !mb-0 bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 shadow-sm hover:border-primary-400 transition-colors"><label class="form-label"><i class="fa-solid fa-file-lines"></i> Kartu Keluarga (KK) *</label><input type="file" id="f_fileKK" accept=".jpg,.jpeg,.png,.pdf" class="form-input" required></div>
+                            <div class="form-group !mb-0 bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 shadow-sm hover:border-primary-400 transition-colors"><label class="form-label"><i class="fa-solid fa-file-contract"></i> Akta Kelahiran *</label><input type="file" id="f_fileAkta" accept=".jpg,.jpeg,.png,.pdf" class="form-input" required></div>
+                            <div class="form-group !mb-0 bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 shadow-sm hover:border-primary-400 transition-colors"><label class="form-label"><i class="fa-solid fa-image text-primary-500"></i> Pas Foto 3x4 (Warna) *</label><input type="file" id="f_fileFoto" accept=".jpg,.jpeg,.png" class="form-input" required></div>
+                            <div class="form-group !mb-0 bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-600 shadow-sm hover:border-primary-400 transition-colors"><label class="form-label"><i class="fa-solid fa-file-invoice"></i> Kartu KIP/KKS (Opsional)</label><input type="file" id="f_fileKip" accept=".jpg,.jpeg,.png,.pdf" class="form-input"></div>
+                        </div>
+                    </div>
+
+                    <!-- SUBMIT BUTTON -->
+                    <div class="border-t-2 border-dashed border-slate-200 dark:border-slate-700 pt-8 mt-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                        <div class="flex items-start max-w-xl">
+                            <input type="checkbox" id="agreement" class="mt-1 mr-3 w-5 h-5 text-primary-600 rounded border-slate-300 focus:ring-primary-500 shrink-0" required>
+                            <label for="agreement" class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Dengan mencentang kotak ini, saya menyatakan bahwa seluruh data yang saya unggah adalah <strong class="text-slate-700 dark:text-slate-200">benar dan sah</strong>.</label>
+                        </div>
+                        <button type="submit" id="btnSubmitForm" class="w-full lg:w-auto bg-primary-600 hover:bg-primary-700 text-white px-8 sm:px-12 py-4 rounded-2xl font-bold text-base sm:text-lg transition-all duration-300 shadow-lg shadow-primary-500/40 hover:shadow-primary-500/60 hover:-translate-y-1 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-paper-plane mr-3" id="iconSubmit"></i>
+                            <span id="txtSubmit">Kirim Pendaftaran</span>
+                            <div id="loaderSubmit" class="loader ml-3 hidden"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Wadah Sukses Pendaftaran (Disembunyikan pada awalnya) -->
+        <div id="success-container" class="hidden items-center justify-center min-h-[60vh] mt-10 animate-fade-in">
+            <div class="text-center bg-white dark:bg-slate-800 p-8 sm:p-10 rounded-3xl shadow-xl max-w-lg mx-auto border border-gray-100 dark:border-gray-700 mx-4">
+                <div class="w-20 h-20 sm:w-24 sm:h-24 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fa-solid fa-check text-4xl sm:text-5xl"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">Pendaftaran Berhasil!</h2>
+                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">Terima kasih, data pendaftaran Anda telah masuk ke sistem kami.</p>
+                
+                <div class="bg-gray-50 dark:bg-slate-900 p-4 rounded-xl mb-6">
+                    <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-1">Nomor Pendaftaran Anda:</p>
+                    <p class="text-xl sm:text-2xl font-mono font-bold text-primary-600 dark:text-primary-400 break-all" id="displayNoDaftar">PPDB-XXXX</p>
+                </div>
+                
+                <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-8">Harap simpan nomor pendaftaran ini untuk mengecek status secara berkala. Bawalah berkas asli saat pengumuman kelulusan.</p>
+                
+                <a href="index.html" class="inline-block bg-gray-900 hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 text-white px-8 py-3.5 rounded-xl sm:rounded-full font-medium transition-all w-full text-center">
+                    Kembali ke Beranda
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <div id="toastContainer" class="fixed bottom-5 right-5 left-5 sm:left-auto z- flex flex-col space-y-2 pointer-events-none"></div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

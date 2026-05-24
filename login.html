@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin | UPTD SDN 24 Batangase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style type="text/tailwindcss">
+        .form-group { @apply mb-5 md:mb-6; }
+        .form-label { @apply flex items-start sm:items-center text-sm font-bold text-slate-700 dark:text-slate-200 mb-2 tracking-wide leading-relaxed; }
+        .form-input { @apply w-full px-4 py-3 sm:py-3.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white transition-all duration-300 shadow-sm placeholder:text-slate-400 focus:outline-none focus:border-primary-500 focus:ring-4 focus:ring-primary-500/20 focus:bg-white dark:focus:bg-slate-900; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <a href="index.html" class="flex items-center overflow-hidden">
+                    <img src="logo.png.png" alt="Logo SDN 24 Batangase" class="w-10 h-10 sm:w-12 sm:h-12 mr-3 object-contain drop-shadow-md shrink-0">
+                    <div class="truncate">
+                        <h1 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white leading-tight truncate">SDN 24 Batangase</h1>
+                        <p class="text-[10px] sm:text-xs text-primary-600 dark:text-primary-400 font-medium truncate">PPDB Online 2026</p>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-6 shrink-0">
+                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors">Beranda</a>
+                    <a href="form.html" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors">Daftar Sekarang</a>
+                    <div class="h-6 w-px bg-gray-300 dark:bg-gray-700"></div>
+                    <button id="themeToggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fa-solid fa-moon dark:hidden"></i><i class="fa-solid fa-sun hidden dark:block"></i>
+                    </button>
+                    <a href="login.html" class="bg-primary-50 dark:bg-slate-800 border-2 border-primary-100 dark:border-slate-700 text-primary-700 dark:text-primary-400 px-5 py-2 rounded-full font-medium transition-all shadow-sm flex items-center">
+                        <i class="fa-solid fa-user-shield mr-2"></i> Admin
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center space-x-3 shrink-0">
+                    <button id="themeToggleMobile" class="w-9 h-9 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300">
+                        <i class="fa-solid fa-moon dark:hidden text-sm"></i><i class="fa-solid fa-sun hidden dark:block text-sm"></i>
+                    </button>
+                    <button id="mobileMenuBtn" class="text-gray-600 dark:text-gray-300 text-2xl p-1"><i class="fa-solid fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-slate-800 border-t border-gray-100 dark:border-gray-700 shadow-lg absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="index.html" class="block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">Beranda</a>
+                <a href="form.html" class="block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">Daftar Sekarang</a>
+                <a href="login.html" class="block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-slate-700 transition-colors"><i class="fa-solid fa-user-shield mr-2"></i> Login Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full animate-fade-in">
+        <section class="max-w-md mx-auto mt-10 sm:mt-16 px-2">
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-700">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 text-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-lock text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Admin Portal</h2>
+                    <p class="text-sm text-gray-500">Login untuk masuk ke dashboard</p>
+                </div>
+
+                <form id="loginForm" onsubmit="app.login(event)">
+                    <div class="form-group mb-4">
+                        <label class="form-label">Email / Username</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-envelope absolute left-4 top-3.5 text-slate-400"></i>
+                            <input type="email" id="l_email" class="form-input pl-11 !py-3" required value="admin@sdn24.sch.id">
+                        </div>
+                    </div>
+                    <div class="form-group mb-8">
+                        <label class="form-label">Password</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-key absolute left-4 top-3.5 text-slate-400"></i>
+                            <input type="password" id="l_password" class="form-input pl-11 !py-3" required value="admin123">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="btnLogin" class="w-full bg-primary-600 hover:bg-primary-700 text-white py-3.5 rounded-xl font-bold transition-all flex justify-center items-center shadow-lg shadow-primary-500/30">
+                        <span id="txtLogin">Masuk Sistem</span>
+                        <div id="loaderLogin" class="loader ml-3 hidden"></div>
+                    </button>
+                </form>
+                
+                <div class="mt-6 text-center">
+                    <p class="text-[11px] sm:text-xs text-gray-500"><i class="fa-solid fa-shield-halved mr-1"></i> Sistem Keamanan by Supabase Auth</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="toastContainer" class="fixed bottom-5 right-5 left-5 sm:left-auto z- flex flex-col space-y-2 pointer-events-none"></div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
